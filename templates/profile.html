@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ username }} ({{ karma }})
+{% endblock %}
+
+{% block main %}
+
+    <h1 class="header">Profile of <i class="highlight">"{{ username }}"</i> with <i class ="highlight">{{ karma }} total karma</i></h1>
+
+    <h3 style="text-align:left"><u>Contributed advice:</u></h2>
+
+    {% for substance, advice_data in userdata.items() %}
+    <h4 class="highlight" style="text-align:left">{{ substance }}</h3>
+        <ul class="list-group m-2">
+            {% for advice_entry in advice_data %}
+                <li class="list-group-item d-flex justify-content-start align-items-center">
+
+                    <div class="flex-sm-column m-2">
+                        <label id="{{ advice_entry['id'] }}" class="btn btn-primary btn-small disabled" style="opacity:1.0">{{ advice_entry['votes'] }}</label>
+                    </div>
+
+                    <div class="flex-xl-column advice">
+                        {{ advice_entry['advice'] }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New Suggestions
+{% endblock %}
+
+{% block main %}
+
+    <h3 class="header">Which Substances should be added to the page?</h3>
+
+    <ul class="list-group">
+        {% for suggestion in suggestions %}
+            <li class="list-group-item d-flex justify-content-start align-items-center">
+                <div class="flex-sm-column m-2">
+                    <div id="vote-group" class="btn-group">
+
+                        <label class="btn btn-primary btn-small" onclick="voteSuggestion(1,{{ loop.index }},{{ session.user_id }},'{{ suggestion['substance'] }}')">
+                            <i id="up {{ loop.index }}" class="fa fa-chevron-up {{ 'voted' if suggestion['uservote'] == 1 else '' }}"></i>
+                        </label>
+
+		                <label id="{{ loop.index }}" class="btn btn-primary btn-small disabled" style="opacity:1.0">
+		                    {{ suggestion['votes'] }}
+                        </label>
+
+		                <label class="btn btn-primary btn-small" onclick="voteSuggestion(-1,{{ loop.index }},{{ session.user_id }},'{{ suggestion['substance'] }}')">
+                            <i id="down {{ loop.index }}" class="fa fa-chevron-down {{ 'voted' if suggestion['uservote'] == -1 else '' }}"></i>
+                        </label>
+
+	                </div>
+	           </div>
+
+	           <div class="flex-md-column">
+	               {{ suggestion['substance'] }}
+	           </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form action="{{ url_for('suggestions') }}" method="post">
+        <div class="form-group  inputbar">
+            <textarea class="form-control m-3" placeholder="Suggest new substance"  name="suggestion" maxlength="20" rows="1" required></textarea>
+            <button type="submit" class="btn btn-primary" >Add</button>
+        </div>
+    </form>
+
+{% endblock %}

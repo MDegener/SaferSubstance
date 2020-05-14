@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Safer Use: {{ substance }}
+{% endblock %}
+
+{% block main %}
+
+    <div class="header">
+        <h3>Safer use advice for...</h3>
+        <hr>
+        <h1 class="highlight">{{ substance }}</h1>
+    </div>
+
+    <ul class="list-group">
+        {% for advice in info %}
+            <li class="list-group-item d-flex justify-content-start align-items-center">
+                <div class="flex-sm-column m-2">
+                    {% if session.user_id %}
+                        <div class="btn-group">
+
+                            <label class="btn btn-primary btn-small" onclick="voteAdvice(1,{{ advice['id'] }},{{ session.user_id }})">
+                                <i id="up {{ advice['id'] }}" class="fa fa-chevron-up {{ 'voted' if advice['uservote'] == 1 else '' }}"></i>
+                            </label>
+
+		                    <label id="{{ advice['id'] }}" class="btn btn-primary btn-small disabled" style="opacity:1.0">
+		                        {{ advice['votes'] }}
+                            </label>
+
+		                    <label class="btn btn-primary btn-small" onclick="voteAdvice(-1,{{ advice['id'] }},{{ session.user_id }})">
+                                <i id="down {{ advice['id'] }}" class="fa fa-chevron-down {{ 'voted' if advice['uservote'] == -1 else '' }}"></i>
+                            </label>
+
+	                    </div>
+
+	                {% else %}
+	                   <label id="{{ advice['id'] }}" class="btn btn-primary btn-small disabled" style="opacity:1.0">
+	                       <a data-toggle="tooltip" title="Login to vote" href="{{ url_for('login') }}" style="color:white">
+	                            {{ advice['votes'] }}
+	                       </a>
+	                   </label>
+                    {% endif %}
+                </div>
+
+                <div class="flex-xl-column advice">
+                    {{ advice['advice'] }}
+                </div>
+            </li>
+        {% endfor %}
+    <ul>
+
+    <div class="d-flex justify-content-center m-3">
+        {{ pagination.links }}
+    </div>
+
+    {% if session.user_id %}
+    <form action="{{ url_for('info') }}" method="post">
+        <div class="form-group">
+            <textarea class="form-control" placeholder="New advice for {{ substance }}" name="advice" rows="3" maxlength="150" required></textarea>
+            <button type="submit" name="substance" value="{{ substance }}" class="btn btn-primary m-2" >Add</button>
+        </div>
+    </form>
+
+    {% else %}
+    <form action="{{ url_for('login') }}" method="get">
+        <button type="submit" class="btn btn-primary">Add new advice</button>
+    </form>
+    {% endif %}
+
+    <div class="alert alert-dismissible alert-light fixed-bottom m-4">
+        <strong>Disclaimer:</strong>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        We do not condone the use of any psychoactive substance. The purpose of this website is drug education and harm reduction.
+        The information is provided and validated by the community. Please keep in mind that some advice could be misleading, false or even dangerous!
+        We are dedicated to maintain the quality of the content, delete harmful advice and ban toxic users. Thank you!
+    </div>
+
+{% endblock %}

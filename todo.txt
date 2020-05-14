@@ -1,0 +1,30 @@
+// ToDo //
+
+/ Layout /
+DONE - change color of pagination
+DONE - Make profile page look nicer
+DONE - Change length of search bar
+DONE - Add text to "Our mission"
+DONE - Add disclaimer to end of page
+DONE - use HTML headings only for real headings
+DONE - use external CSS rather than internal
+DONE - change notfication text / system (-> more javascript based)
+
+/ Features /
+DONE - profile page with total karma & all contributed advice (+substance & votes)
+DONE - add "suggest new substance" with ability to vote on existing suggestions
+[ - create an individual page for every advice where everyone can comment ]
+
+/ Improvements /
+- change index input to a select form
+[ - make SQL queries more efficient ]
+- general debugging and error testing
+- ability to sort advice for "top" and "newest"
+DONE - notify non-users that they can vote after signing up
+DONE - Make a GET request instead of a POST request (search for advice)
+DONE - Maximum amount of lines per page + continuous pages
+DONE - rename table "substances" to "suggestions"
+DONE - check for better variable names
+DONE - rename "info" to "adviceData"
+DONE - general SQL table optimization
+DONE - SELECT votes FROM ... -> in only one SQL query

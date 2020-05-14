@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+    <div class="header">
+        <h1>Welcome to Safer Substance!</h1>
+        <h3>Your place for quick & easy safer-use advice.</h3>
+    </div>
+
+    <form action="{{ url_for('info') }}" method="get">
+        <div class="form-group inputbar">
+            <div class="col-centered">
+                <input class="form-control" name="substance" placeholder="Which substance interests you?" type="text"/>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if notify %}
+    <div class="alert alert-dismissible alert-danger notification">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>{{ notify }}</strong>
+    </div>
+    {% endif %}
+
+{% endblock %}

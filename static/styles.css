@@ -1,0 +1,50 @@
+main {
+    text-align:center;
+    margin: 5%;
+}
+
+.header {
+    margin: 4%;
+}
+
+.highlight {
+    color: #375a7f;
+    font-weight: bold;
+}
+
+.mission {
+    text-align: justify;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.inputbar {
+    padding-left:35%;
+    padding-right:35%;
+}
+
+.notification {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.advice {
+    text-align: left;
+}
+
+.voted {
+    color:#00bc8c;
+}
+
+.page-link {
+    background-color: rgba(55, 90, 127, 0.8) !important;
+}
+
+.page-link:hover,
+.page-item.active .page-link {
+        background-color: rgba(55, 90, 127, 1.0) !important;
+}
+
+.page-item.disabled .page-link {
+        background-color: rgba(55, 90, 127, 0.5) !important;
+}
