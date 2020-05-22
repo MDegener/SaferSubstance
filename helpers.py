@@ -1,12 +1,12 @@
 import csv, os
 import urllib.request
+import sqlite3
 
-from cs50 import SQL
 from flask import redirect, render_template, request, session
 from functools import wraps
 
 # configure CS50 Library to use SQLite database
-db = SQL("sqlite:///safersubstance.db")
+db = sqlite3.connect("sqlite:///safersubstance.db")
 
 def login_required(f):
     """

@@ -1,4 +1,5 @@
-from cs50 import SQL
+import sqlite3
+
 from flask import Flask, redirect, render_template, request, url_for, jsonify
 from flask_session import Session
 from flask_paginate import Pagination, get_page_parameter
@@ -15,7 +16,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-db = SQL("sqlite:///safersubstance.db")
+db = sqlite3.connect("sqlite:///safersubstance.db")
 
 @app.route("/")
 def index():
